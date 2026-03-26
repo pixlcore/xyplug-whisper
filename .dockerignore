@@ -1,0 +1,10 @@
+*
+!Dockerfile
+!index.js
+!package.json
+!README.md
+!LICENSE.md
+!xyops.json
+!.github/
+!.github/workflows/
+!.github/workflows/docker.yml

@@ -1,0 +1,101 @@
+{
+	"type": "xypdf",
+	"description": "xyOps Portable Data Object",
+	"version": "1.0",
+	"xyops": "1.0.0",
+	"items": [
+		{
+			"type": "plugin",
+			"data": {
+				"id": "pmkxwsptrnscrb01",
+				"title": "Whisper Transcription",
+				"enabled": true,
+				"type": "event",
+				"command": "docker run -i --rm --init --name \"xyplug-whisper-{{id}}\" ghcr.io/pixlcore/xyplug-whisper-{{params.model}}:v1.0.0",
+				"script": "",
+				"kill": "parent",
+				"notes": "Transcribe one audio file into text, subtitles, and structured JSON using whisper.cpp with a model baked directly into the Docker image.",
+				"icon": "microphone",
+				"runner": true,
+				"params": [
+					{
+						"id": "model",
+						"title": "Whisper Model",
+						"type": "select",
+						"value": "Base [base], Tiny [tiny], Small [small], Medium [medium], Large v3 [large-v3]",
+						"caption": "Choose which prebuilt Docker image variant to launch. Larger models are slower and need more memory, but generally improve accuracy.",
+						"locked": true
+					},
+					{
+						"id": "language",
+						"title": "Language",
+						"type": "text",
+						"value": "auto",
+						"variant": "text",
+						"required": true,
+						"caption": "Enter a spoken language code such as `en`, `es`, `fr`, etc. Use `auto` to let Whisper detect the language automatically."
+					},
+					{
+						"id": "translate",
+						"title": "Translate to English",
+						"type": "checkbox",
+						"value": false,
+						"caption": "When enabled, Whisper translates the source speech into English instead of transcribing in the original language."
+					},
+					{
+						"id": "threads",
+						"title": "Threads",
+						"type": "text",
+						"value": 4,
+						"variant": "number",
+						"required": true,
+						"caption": "Number of CPU threads to give whisper.cpp inside the container."
+					},
+					{
+						"id": "prompt",
+						"title": "Initial Prompt",
+						"type": "textarea",
+						"value": "",
+						"required": false,
+						"caption": "Optional prompt text to steer transcription, for example names, jargon, acronyms, or expected vocabulary."
+					},
+					{
+						"id": "text",
+						"title": "Attach Text File",
+						"type": "checkbox",
+						"value": true,
+						"caption": "Attach the plain text transcript as a `.txt` file."
+					},
+					{
+						"id": "srt",
+						"title": "Attach SRT File",
+						"type": "checkbox",
+						"value": true,
+						"caption": "Attach subtitle output in `.srt` format."
+					},
+					{
+						"id": "vtt",
+						"title": "Attach VTT File",
+						"type": "checkbox",
+						"value": false,
+						"caption": "Attach subtitle output in `.vtt` format."
+					},
+					{
+						"id": "lrc",
+						"title": "Attach LRC File",
+						"type": "checkbox",
+						"value": false,
+						"caption": "Attach lyric-style subtitle output in `.lrc` format."
+					},
+					{
+						"id": "json",
+						"title": "Attach JSON File",
+						"type": "checkbox",
+						"value": false,
+						"caption": "Attach the raw JSON output emitted by whisper.cpp."
+					}
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "xyplug-whisper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A xyOps marketplace plugin that transcribes audio files with whisper.cpp.",
+  "author": "Joseph Huckaby <jhuckaby@pixlcore.com>",
+  "homepage": "https://github.com/pixlcore/xyplug-whisper",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "xyplug-whisper": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pixlcore/xyplug-whisper"
+  },
+  "bugs": {
+    "url": "https://github.com/pixlcore/xyplug-whisper/issues"
+  },
+  "keywords": [
+    "xyops",
+    "whisper",
+    "whisper.cpp",
+    "transcription",
+    "audio"
+  ]
+}
