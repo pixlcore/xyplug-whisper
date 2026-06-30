@@ -101,10 +101,7 @@ async function runWhisper(cliArgs, workDir) {
 				const progress = parseProgress(line);
 				if ((progress !== null) && (progress > lastProgress)) {
 					lastProgress = progress;
-					emitJson({
-						progress,
-						status: `Transcribing audio (${Math.round(progress * 100)}%)...`
-					});
+					emitJson({ progress });
 					return;
 				}
 				log(line);
@@ -116,10 +113,7 @@ async function runWhisper(cliArgs, workDir) {
 				const progress = parseProgress(stderrBuffer.trim());
 				if ((progress !== null) && (progress > lastProgress)) {
 					lastProgress = progress;
-					emitJson({
-						progress,
-						status: `Transcribing audio (${Math.round(progress * 100)}%)...`
-					});
+					emitJson({ progress });
 				}
 				else {
 					log(stderrBuffer.trim());
@@ -184,8 +178,6 @@ async function runWhisper(cliArgs, workDir) {
 
 	fs.mkdirSync(outputDir, { recursive: true });
 
-	emitJson({ progress: 0, status: 'Preparing transcription...' });
-
 	const cliArgs = [
 		'--no-gpu',
 		'--no-prints',
@@ -223,8 +215,6 @@ async function runWhisper(cliArgs, workDir) {
 		});
 		process.exit(0);
 	}
-
-	emitJson({ status: 'Collecting transcript outputs...' });
 
 	const txtPath = `${outputBase}.txt`;
 	const jsonPath = `${outputBase}.json`;
